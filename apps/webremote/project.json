@@ -1,0 +1,73 @@
+{
+  "root": "apps/webremote",
+  "sourceRoot": "apps/webremote/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/webremote",
+        "index": "apps/webremote/src/index.html",
+        "baseHref": "/",
+        "main": "apps/webremote/src/main.tsx",
+        "polyfills": "apps/webremote/src/polyfills.ts",
+        "tsConfig": "apps/webremote/tsconfig.app.json",
+        "assets": [
+          "apps/webremote/src/favicon.ico",
+          "apps/webremote/src/assets"
+        ],
+        "styles": ["apps/webremote/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/webremote/src/environments/environment.ts",
+              "with": "apps/webremote/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "webremote:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "webremote:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/webremote/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/webremote"],
+      "options": {
+        "jestConfig": "apps/webremote/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
