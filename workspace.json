@@ -1,7 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "webremote": "apps/webremote",
-    "webremote-e2e": "apps/webremote-e2e"
+    "web-local":"apps/web-local",
+    "web-remote": "apps/web-remote"
   }
 }

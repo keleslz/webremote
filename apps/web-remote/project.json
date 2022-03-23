@@ -1,6 +1,6 @@
 {
-  "root": "apps/webremote",
-  "sourceRoot": "apps/webremote/src",
+  "root": "apps/web-remote",
+  "sourceRoot": "apps/web-remote/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,26 +9,26 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/webremote",
-        "index": "apps/webremote/src/index.html",
+        "outputPath": "dist/apps/web-remote",
+        "index": "apps/web-remote/src/index.html",
         "baseHref": "/",
-        "main": "apps/webremote/src/main.tsx",
-        "polyfills": "apps/webremote/src/polyfills.ts",
-        "tsConfig": "apps/webremote/tsconfig.app.json",
+        "main": "apps/web-remote/src/index.ts",
+        "polyfills": "apps/web-remote/src/polyfills.ts",
+        "tsConfig": "apps/web-remote/tsconfig.app.json",
         "assets": [
-          "apps/webremote/src/favicon.ico",
-          "apps/webremote/src/assets"
+          "apps/web-remote/src/favicon.ico",
+          "apps/web-remote/src/assets"
         ],
-        "styles": ["apps/webremote/src/styles.css"],
+        "styles": ["apps/web-remote/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/web-remote/webpack.config.js"
       },
       "configurations": {
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/webremote/src/environments/environment.ts",
-              "with": "apps/webremote/src/environments/environment.prod.ts"
+              "replace": "apps/web-remote/src/environments/environment.ts",
+              "with": "apps/web-remote/src/environments/environment.prod.ts"
             }
           ],
           "optimization": true,
@@ -43,12 +43,12 @@
     "serve": {
       "executor": "@nrwl/web:dev-server",
       "options": {
-        "buildTarget": "webremote:build",
+        "buildTarget": "web-remote:build",
         "hmr": true
       },
       "configurations": {
         "production": {
-          "buildTarget": "webremote:build:production",
+          "buildTarget": "web-remote:build:production",
           "hmr": false
         }
       }
@@ -57,14 +57,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/webremote/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/web-remote/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/webremote"],
+      "outputs": ["coverage/apps/web-remote"],
       "options": {
-        "jestConfig": "apps/webremote/jest.config.js",
+        "jestConfig": "apps/web-remote/jest.config.js",
         "passWithNoTests": true
       }
     }

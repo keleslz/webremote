@@ -1,10 +1,10 @@
 module.exports = {
-  displayName: 'webremote',
+  displayName: 'web-remote',
   preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/apps/webremote',
+  coverageDirectory: '../../coverage/apps/web-remote',
 };

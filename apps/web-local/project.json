@@ -1,0 +1,73 @@
+{
+  "root": "apps/web-local",
+  "sourceRoot": "apps/web-local/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/web-local",
+        "index": "apps/web-local/src/index.html",
+        "baseHref": "/",
+        "main": "apps/web-local/src/index.ts",
+        "polyfills": "apps/web-local/src/polyfills.ts",
+        "tsConfig": "apps/web-local/tsconfig.app.json",
+        "assets": [
+          "apps/web-local/src/favicon.ico",
+          "apps/web-local/src/assets"
+        ],
+        "styles": ["apps/web-local/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/web-local/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/web-local/src/environments/environment.ts",
+              "with": "apps/web-local/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "web-local:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "web-local:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-local/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/web-local"],
+      "options": {
+        "jestConfig": "apps/web-local/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
