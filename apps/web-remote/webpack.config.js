@@ -37,7 +37,7 @@ module.exports = (context) => {
         library: { type: 'var', name: 'remote' },
         filename: 'remoteEntry.js',
         exposes: {
-          './App': './src/app/app'
+          './App': './src/app/app.tsx'
         },
         shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
       }),
