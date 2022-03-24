@@ -7,8 +7,14 @@ module.exports = (context) => {
 
   const result = {
     ...context,
-    entry: "./src/index",
+    entry: "./src/index.ts",
     mode: "development",
+    cache: false,
+    devtool: 'source-map',
+    optimization: {
+      minimize: false,
+    },
+    target: 'web',
     devServer: {
       static: path.join(__dirname, "dist"),
       port: 4200,
