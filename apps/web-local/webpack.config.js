@@ -40,7 +40,8 @@ module.exports = (context) => {
       new ModuleFederationPlugin({
         name: "local",
         remotes: {
-          remote: `remote@//localhost:4201/remoteEntry.js`,
+          remote: 'remote@//localhost:4201/remoteEntry.js',
+          remote2: 'remote_app2@//localhost:4202/remoteEntry.js',
         },
         shared: {
           react: {
