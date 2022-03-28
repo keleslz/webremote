@@ -3,30 +3,24 @@ import styles from './app.module.css';
 import React, { Suspense } from "react";
 
 
-const RemoteApp = React.lazy(() => import('remote/App'));
-// const RemoteApp2 = React.lazy(() => import('remote2/App2'));
+const WebRemote = React.lazy(() => import('web_remote/App')); // 1st remote app
+const RemoteApp = React.lazy(() => import('remote_app/App')); // 2nd remote app
 
 export function App() {
-  // console.log(RemoteApp._result)
-  // console.log(RemoteApp2)
 
   const Loader = () => <div>loading...</div>
 
   return (
     <>
-      <h1>Welcome to the futur - Web local app</h1>
+      <h1>Welcome to the futur - Web local app port 4200</h1>
 
-      <div>
-        <Suspense fallback={<Loader />}>
-          <RemoteApp />
-        </Suspense>
-      </div>
+      <Suspense fallback={<Loader />}>
+        <WebRemote />
+      </Suspense>
 
-      <div>
-        <Suspense fallback={<Loader />}>
-          <RemoteApp2 />
-        </Suspense>
-      </div>
+      <Suspense fallback={<Loader />}>
+        <RemoteApp />
+      </Suspense>
     </>
   );
 }

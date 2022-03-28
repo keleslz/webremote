@@ -42,7 +42,7 @@ module.exports = (context) => {
     plugins: [
       // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
       new ModuleFederationPlugin({
-        name: 'remote',
+        name: 'web_remote',
         // library: { type: 'var', name: 'remote' },
         filename: 'remoteEntry.js',
         exposes: {

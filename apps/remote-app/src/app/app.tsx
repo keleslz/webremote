@@ -3,7 +3,7 @@ import styles from './app.module.css';
 
 export function App() {
   return <div>
-    <h1>Remote App 2 avec SWC</h1>
+    <h1>Remote App 2 avec SWC port 4202</h1>
   </div>
 }
 

@@ -4,7 +4,7 @@ const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
 
-console.log('remote_app2')
+console.log('remote_app2, 2 e app remote')
 
 module.exports = (context) => {
   const result = {
@@ -40,11 +40,11 @@ module.exports = (context) => {
     plugins: [
       // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
       new ModuleFederationPlugin({
-        name: 'remote_app2',
+        name: 'remote_app',
         // library: { type: 'var', name: 'remote' },
         filename: 'remoteEntry.js',
         exposes: {
-          './App2': './src/app/app.tsx'
+          './App': './src/app/app.tsx'
         },
         shared: {
           react: {
@@ -59,7 +59,7 @@ module.exports = (context) => {
       new ExternalTemplateRemotesPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        chunks: ['main'],
+        chunks: ['index'],
       }),
       new ReactRefreshWebpackPlugin({
         exclude: [/node_modules/, /bootstrap\.js$/],
