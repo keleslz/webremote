@@ -1,7 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "web-local":"apps/web-local",
+    "remote-app": "apps/remote-app",
+    "web-local": "apps/web-local",
     "web-remote": "apps/web-remote"
   }
 }

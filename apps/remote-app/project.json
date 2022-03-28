@@ -1,0 +1,73 @@
+{
+  "root": "apps/remote-app",
+  "sourceRoot": "apps/remote-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "swc",
+        "outputPath": "dist/apps/remote-app",
+        "index": "apps/remote-app/src/index.html",
+        "baseHref": "/",
+        "main": "apps/remote-app/src/index.ts",
+        "polyfills": "apps/remote-app/src/polyfills.ts",
+        "tsConfig": "apps/remote-app/tsconfig.app.json",
+        "assets": [
+          "apps/remote-app/src/favicon.ico",
+          "apps/remote-app/src/assets"
+        ],
+        "styles": ["apps/remote-app/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "apps/remote-app/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/remote-app/src/environments/environment.ts",
+              "with": "apps/remote-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "remote-app:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "remote-app:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/remote-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/remote-app"],
+      "options": {
+        "jestConfig": "apps/remote-app/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

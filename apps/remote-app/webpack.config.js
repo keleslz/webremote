@@ -1,12 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {
-  ModuleFederationPlugin
-} = require('webpack').container;
+const { ModuleFederationPlugin } = require('webpack').container;
 const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
 
-console.log('remote')
+console.log('remote_app2, 2 e app remote')
 
 module.exports = (context) => {
   const result = {
@@ -20,7 +18,7 @@ module.exports = (context) => {
     devServer: {
       hot: true,
       static: path.join('dist'),
-      port: 4201,
+      port: 4202,
       onListening: () => context.devServer.onListening,
       liveReload: false,
     },
@@ -34,15 +32,15 @@ module.exports = (context) => {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          presets: ['@babel/preset-react'],
-          plugins: [require.resolve('react-refresh/babel')],
+          presets: [],
+          plugins: [],
         },
       }, ],
     },
     plugins: [
       // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
       new ModuleFederationPlugin({
-        name: 'web_remote',
+        name: 'remote_app',
         // library: { type: 'var', name: 'remote' },
         filename: 'remoteEntry.js',
         exposes: {
@@ -50,6 +48,7 @@ module.exports = (context) => {
         },
         shared: {
           react: {
+            requiredVersion: "17.0.2",
             singleton: true
           },
           'react-dom': {
@@ -60,7 +59,7 @@ module.exports = (context) => {
       new ExternalTemplateRemotesPlugin(),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        chunks: ['main'],
+        chunks: ['index'],
       }),
       new ReactRefreshWebpackPlugin({
         exclude: [/node_modules/, /bootstrap\.js$/],

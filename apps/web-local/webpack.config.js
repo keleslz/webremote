@@ -18,7 +18,8 @@ module.exports = (context) => {
     devServer: {
       static: path.join(__dirname, "dist"),
       port: 4200,
-      onListening: () => context.devServer.onListening
+      onListening: () => context.devServer.onListening,
+      hot: true,
     },
     output: {
       publicPath: "auto",
@@ -40,7 +41,8 @@ module.exports = (context) => {
       new ModuleFederationPlugin({
         name: "local",
         remotes: {
-          remote: `remote@//localhost:4201/remoteEntry.js`,
+          web_remote: 'web_remote@//localhost:4201/remoteEntry.js',
+          remote_app: 'remote_app@//localhost:4202/remoteEntry.js',
         },
         shared: {
           react: {
@@ -55,6 +57,7 @@ module.exports = (context) => {
       }),
       new HtmlWebpackPlugin({
         template: "./src/index.html",
+        chunks: ['main']
       }),
     ]
   };
